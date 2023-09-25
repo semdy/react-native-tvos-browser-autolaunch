@@ -6,7 +6,7 @@ module.exports = {
         android: null,
         ios: null,
         macos: null,
-      },
+      }
     },
   },
 };

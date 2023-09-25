@@ -135,11 +135,13 @@ const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 12,
   },
   searchBar: {
     felx: 1,
     height: 46,
+    maxWidth: 650,
     flexDirection: 'row',
     alignItems: 'center',
   },

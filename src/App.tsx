@@ -14,19 +14,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import clear from '@/assets/clear.png';
 
 type Props = Record<string, any>;
-type State = {inputValue: string; finalValue: string; cacheReady: boolean; focused: boolean}
+type State = {
+  inputValue: string;
+  finalValue: string;
+  cacheReady: boolean;
+  focused: boolean;
+};
 
-export default class App extends Component<
-  Props,
-  State
-> {
+export default class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       inputValue: 'http://demo.xianglu-china.com/#/admin/openscreen',
       finalValue: '',
       cacheReady: false,
-      focused: false
+      focused: false,
     };
   }
 
@@ -40,12 +42,12 @@ export default class App extends Component<
   }
 
   handleConfirm = () => {
-    const { inputValue } = this.state
+    const {inputValue} = this.state;
     if (inputValue) {
-      if (!(inputValue.match(/https?:\/\//))) {
+      if (!inputValue.match(/https?:\/\//)) {
         return ToastAndroid.show('不合法的网址', ToastAndroid.SHORT);
       }
-      this.setState({ finalValue: inputValue });
+      this.setState({finalValue: inputValue});
       AsyncStorage.setItem('lastUrl', inputValue);
     } else {
       ToastAndroid.show('请输入网址', ToastAndroid.SHORT);
@@ -57,12 +59,12 @@ export default class App extends Component<
   };
 
   handleFocus = () => {
-    this.setState({focused: true})
-  }
+    this.setState({focused: true});
+  };
 
-   handleBlur = () => {
-    this.setState({focused: false})
-  }
+  handleBlur = () => {
+    this.setState({focused: false});
+  };
 
   renderInput(): React.ReactNode {
     return (
@@ -75,7 +77,10 @@ export default class App extends Component<
               onBlur={this.handleBlur}
               placeholder="请输入网址"
               placeholderTextColor="#c0c0c0"
-              style={[styles.searchInput, this.state.focused && styles.inputFocused]}
+              style={[
+                styles.searchInput,
+                this.state.focused && styles.inputFocused,
+              ]}
               value={this.state.inputValue}
               onChangeText={text => this.setState({inputValue: text})}
               onSubmitEditing={this.handleConfirm}
@@ -140,7 +145,7 @@ const styles = StyleSheet.create({
   },
   inputWrap: {
     position: 'relative',
-    flex: 1
+    flex: 1,
   },
   clear: {
     position: 'absolute',
@@ -163,10 +168,10 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 2,
     borderColor: 'transparent',
-    backgroundColor: '#e9e9e9'
+    backgroundColor: '#e9e9e9',
   },
   inputFocused: {
-    borderColor: '#5258dd'
+    borderColor: '#5258dd',
   },
   button: {
     width: 70,
